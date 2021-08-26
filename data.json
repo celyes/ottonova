@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Hans Müller",
+        "birthdate": "30.12.1950",
+        "start": "01.01.2001"
+    },
+    {
+        "name": "Angelika Fringe",
+        "birthdate": "09.06.1966",
+        "start": "15.01.2001"
+    },
+    {
+        "name": "Peter Klever",
+        "birthdate": "12.07.1991",
+        "start": "15.05.2016",
+        "specialContract": 27
+    },
+    {
+        "name": "Marina Helter",
+        "birthdate": "26.01.1970",
+        "start": "15.01.2018"
+    },
+    
+    {
+        "name": "Sepp Meier",
+        "birthdate": "23.05.1980",
+        "start": "01.12.2017"
+    }
+]

@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+if(PHP_SAPI !== 'cli') exit; // exit if not executed from CLI
+
+require_once 'vendor/autoload.php';
+
+use Celyes\Ottonova\Calculator;
+use Celyes\Ottonova\Printer\JsonPrinter;
+use Celyes\Ottonova\Printer\ConsolePrinter;
+
+// get command line flags and arguments
+
+$options = getopt("y:o::f::");
+
+$year = $options['y'] ?: $options['year'];
+
+$output = $options['o'] ?? 'console';
+
+$file = $options['f'] ?? 'vacations';
+
+
+switch($output) {
+    case 'json':
+        $printer = new JsonPrinter($file);
+        break;
+    default:
+        $printer = new ConsolePrinter();
+}
+
+$data = json_decode(file_get_contents('data.json'), true);
+
+$calculator = new Calculator($year, $data, $printer);
+$calculator->calculate()->output();
