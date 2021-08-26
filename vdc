@@ -11,20 +11,20 @@ use Celyes\Ottonova\Printer\ConsolePrinter;
 
 // get command line flags and arguments
 
-$options = getopt('', ["year::", "input::", "output::", "file::"]);
+$options = getopt('', ["year::", "input::", "printer::", "file::"]);
 
 
 $input = $options['input'] ?? 'data.json';
 
 $year = $options['year'] ?? '2020';
 
-$output = $options['output'] ?? 'console';
+$printer = $options['printer'] ?? 'console';
 
 $file = $options['file'] ?? 'vacations';
 
 if(!file_exists($input)) { echo "\e[0;31mThe file you specified doesn't exist! quitting...\e[0m"; exit; }
 
-switch($output) {
+switch($printer) {
     case 'json':
         $printer = new JsonPrinter($file);
         break;

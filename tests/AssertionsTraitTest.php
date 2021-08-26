@@ -10,6 +10,13 @@ use ReflectionClass;
 class AssertionsTraitsTest extends TestCase
 {
 
+
+    public function setUp(): void
+    {
+        $this->data = json_decode(file_get_contents('data.json'), true);   
+        $this->calculator = new Calculator('2021', $this->data, new ConsolePrinter());
+    }
+    
     public function invokeMethod($object, $methodName, array $parameters = array())
     {
         $reflection = new ReflectionClass(get_class($object));
@@ -25,14 +32,10 @@ class AssertionsTraitsTest extends TestCase
      */
     public function testHasSpecialContractWorks()
     {
-        $data = json_decode(file_get_contents('data.json'), true);
-        
-        $calculator = new Calculator('2021', $data, new ConsolePrinter());
-        
-        $hasSpecialContract = $this->invokeMethod($calculator, 'hasSpecialContract', [$data[0]]);
+        $hasSpecialContract = $this->invokeMethod($this->calculator, 'hasSpecialContract', [$this->data[0]]);
         $this->assertFalse($hasSpecialContract); 
           
-        $hasSpecialContract = $this->invokeMethod($calculator, 'hasSpecialContract', [$data[2]]);
+        $hasSpecialContract = $this->invokeMethod($this->calculator, 'hasSpecialContract', [$this->data[2]]);
         $this->assertTrue($hasSpecialContract);    
     }
 
@@ -44,14 +47,10 @@ class AssertionsTraitsTest extends TestCase
 
     public function testEmployeeHasStartedInCourseOfTheYear()
     {
-        $data = json_decode(file_get_contents('data.json'), true);
-        
-        $calculator = new Calculator('2021', $data, new ConsolePrinter());
-        
-        $hasSpecialContract = $this->invokeMethod($calculator, 'hasStartedInCourseOfTheYear', [$data[0]['start']]);
+        $hasSpecialContract = $this->invokeMethod($this->calculator, 'hasStartedInCourseOfTheYear', [$this->data[0]['start']]);
         $this->assertFalse($hasSpecialContract); 
 
-        $hasSpecialContract = $this->invokeMethod($calculator, 'hasStartedInCourseOfTheYear', [$data[1]['start']]);
+        $hasSpecialContract = $this->invokeMethod($this->calculator, 'hasStartedInCourseOfTheYear', [$this->data[1]['start']]);
         $this->assertTrue($hasSpecialContract); 
 
     }

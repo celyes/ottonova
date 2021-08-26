@@ -10,6 +10,15 @@ use ReflectionClass;
 class VacationCalculatorTest extends TestCase
 {
 
+    private $data;
+    private $calculator;
+
+    public function setUp(): void
+    {
+        $this->data = json_decode(file_get_contents('data.json'), true);   
+        $this->calculator = new Calculator('2020', $this->data, new ConsolePrinter());
+    }
+
     public function invokeMethod($object, $methodName, array $parameters = array())
     {
         $reflection = new ReflectionClass(get_class($object));
@@ -33,29 +42,25 @@ class VacationCalculatorTest extends TestCase
      */
     public function testGetEmployeeAgeWorks()
     {
-        $data = json_decode(file_get_contents('data.json'), true);
-        
-        $calculator = new Calculator('2020', $data, new ConsolePrinter());
-        
-        $age = $this->invokeMethod($calculator, 'getEmployeeAge', [$data[0]['birthdate']]);
+        $age = $this->invokeMethod($this->calculator, 'getEmployeeAge', [$this->data[0]['birthdate']]);
         $this->assertEquals($age, 70); 
 
-        $age = $this->invokeMethod($calculator, 'getEmployeeAge', [$data[2]['birthdate']]);
+        $age = $this->invokeMethod($this->calculator, 'getEmployeeAge', [$this->data[2]['birthdate']]);
         $this->assertEquals($age, 29); 
     }
 
-    public function testOutputIsString()
+    /**
+     * @test
+     * checks if the the output is an array and it holds correct values 
+     */
+    public function testOutputIsCorrect()
     {
-        $data = json_decode(file_get_contents('data.json'), true);
         
-        $calculator = new Calculator('2020', $data, new ConsolePrinter());
-        
-        $calculator->calculate();
+        $this->calculator->calculate();
 
-        $vacations = $this->getProperty($calculator, 'vacations');
+        $vacations = $this->getProperty($this->calculator, 'vacations');
         
+        $this->assertEquals($vacations[0]['vacation'], 26);
         $this->assertIsArray($vacations);
     }
-
-
 }

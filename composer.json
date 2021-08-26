@@ -18,5 +18,9 @@
         }
     ],
     "bin": ["vdc"],
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "scripts": {
+        "test": "./vendor/bin/phpunit --colors=always",
+        "test:verbose": "@test -vvv"
+    }
 }
