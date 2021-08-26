@@ -5,7 +5,7 @@
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     },
-    "license": "MIT\b",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Celyes\\Ottonova\\": "src/"
