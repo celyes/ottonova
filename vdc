@@ -11,14 +11,18 @@ use Celyes\Ottonova\Printer\ConsolePrinter;
 
 // get command line flags and arguments
 
-$options = getopt("y:o::f::");
+$options = getopt('', ["year::", "input::", "output::", "file::"]);
 
-$year = $options['y'] ?: $options['year'];
 
-$output = $options['o'] ?? 'console';
+$input = $options['input'] ?? 'data.json';
 
-$file = $options['f'] ?? 'vacations';
+$year = $options['year'] ?? '2020';
 
+$output = $options['output'] ?? 'console';
+
+$file = $options['file'] ?? 'vacations';
+
+if(!file_exists($input)) { echo "\e[0;31mThe file you specified doesn't exist! quitting...\e[0m"; exit; }
 
 switch($output) {
     case 'json':
@@ -28,7 +32,7 @@ switch($output) {
         $printer = new ConsolePrinter();
 }
 
-$data = json_decode(file_get_contents('data.json'), true);
+$data = json_decode(file_get_contents($input), true);
 
 $calculator = new Calculator($year, $data, $printer);
 $calculator->calculate()->output();

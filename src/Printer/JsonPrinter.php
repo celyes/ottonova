@@ -16,6 +16,6 @@ class JsonPrinter implements PrinterInterface
         $file = fopen($this->filename . '.json', 'w');
         fwrite($file, json_encode($data, JSON_UNESCAPED_UNICODE));
         fclose($file);
-        echo "\e[1;32mVacations data written successfully! check file " . $this->filename . ".json\e[0m\n";
+        echo "\e[1;32mVacations data written successfully! checkout the file " . $this->filename . ".json\e[0m\n";
     }
 }
