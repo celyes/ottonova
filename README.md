@@ -42,7 +42,7 @@ To run tests, run this command:
 composer test
 ```
 
-For more verbosity in tests
+For more verbosity in tests:
 ```sh
 composer test:verbose
 ```
