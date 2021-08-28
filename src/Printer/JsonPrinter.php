@@ -6,12 +6,19 @@ use Celyes\Ottonova\Printer\PrinterInterface;
 
 class JsonPrinter implements PrinterInterface
 {
+
     public function __construct(string $filename)
     {
         $this->filename = trim(preg_replace('/[0-9\@\.\;\" "]+/', '', $filename));
     }
 
-    public function print($data)
+     /**
+     * saves the received data to a json file
+     * 
+     * @param array $data
+     * @return void
+     */
+    public function print(array $data): void
     {
         $file = fopen($this->filename . '.json', 'w');
         fwrite($file, json_encode($data, JSON_UNESCAPED_UNICODE));

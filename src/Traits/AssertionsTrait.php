@@ -7,10 +7,10 @@ trait AssertionsTrait
     /**
      * determines whether the user has signed a special contract 
      * 
-     * @param object $employee
+     * @param array $employee
      * @return bool 
      */
-    protected function hasSpecialContract($employee)
+    protected function hasSpecialContract(array $employee): bool
     {
         return isset($employee['specialContract']);
     }
@@ -21,7 +21,7 @@ trait AssertionsTrait
      * @param string $start
      * @return bool 
      */
-    protected function hasStartedInCourseOfTheYear($start)
+    protected function hasStartedInCourseOfTheYear(string $start): bool
     {
         return !preg_match("/(01).(01).(\d{4})/", $start);
     }

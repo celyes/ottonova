@@ -4,5 +4,5 @@ namespace Celyes\Ottonova\Printer;
 
 interface PrinterInterface
 {
-    public function print($data);
+    public function print(array $data);
 }

@@ -9,7 +9,7 @@ trait ActionsTrait
      * 
      * @return self 
      */
-    protected function setVacationBasedOnKindOfContract()
+    protected function setVacationBasedOnKindOfContract(): self
     {
         if($this->hasSpecialContract($this->cursor)) {
             $this->vacationDays = $this->cursor['specialContract'];
@@ -22,7 +22,7 @@ trait ActionsTrait
      * 
      * @return self 
      */
-    protected function setVacationAccordingToAge()
+    protected function setVacationAccordingToAge(): self
     {
         if($this->getEmployeeAge($this->cursor['birthdate']) >= 30) {
             if(($this->year - explode('.', $this->cursor['start'])[2]) % 5 === 0)
@@ -39,7 +39,7 @@ trait ActionsTrait
      * 
      * @return self 
      */
-    protected function setVacationBasedOnStartingDate()
+    protected function setVacationBasedOnStartingDate(): self
     {
         if($this->hasStartedInCourseOfTheYear($this->cursor['start'])) {
             $this->vacationDays *= 2;

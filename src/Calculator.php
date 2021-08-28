@@ -11,13 +11,42 @@ class Calculator
 
     use AssertionsTrait, ActionsTrait;
 
+    /**
+     * the year for which the vacations will be calculated
+     * 
+     * @property string $year 
+     */
     protected $year;
+
+    /**
+     * the list of employees as an array
+     * 
+     * @property array $employees
+     */
     protected $employees;
+
+    /**
+     * the final output to the terminal
+     * 
+     * @property array $vacations
+     */
     protected $vacations;
+
+    /**
+     * a place to hold the days of vacation for each employee
+     * 
+     * @property int $vacationDays
+     */
     protected $vacationDays;
+
+    /**
+     * an array that contains the current employee being iterated on
+     * 
+     * @property array $cursor  
+     */
     protected $cursor;
 
-    public function __construct(string $year, $employees, PrinterInterface $printer)
+    public function __construct(string $year, array $employees, PrinterInterface $printer)
     {
         $this->year = $year;
         $this->employees = $employees;
@@ -32,7 +61,7 @@ class Calculator
      * @param string $birthdate
      * @return bool 
      */
-    protected function getEmployeeAge($birthdate)
+    protected function getEmployeeAge(string $birthdate): bool
     {
         return $this->year - explode('.', $birthdate)[2];
     }
@@ -71,7 +100,7 @@ class Calculator
      * 
      * @return void
      */
-    public function output()
+    public function output(): void
     {
         $this->printer->print($this->vacations);
     }
