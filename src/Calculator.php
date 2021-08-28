@@ -14,35 +14,35 @@ class Calculator
     /**
      * the year for which the vacations will be calculated
      * 
-     * @property string $year 
+     * @var string $year 
      */
     protected $year;
 
     /**
      * the list of employees as an array
      * 
-     * @property array $employees
+     * @var array $employees
      */
     protected $employees;
 
     /**
      * the final output to the terminal
      * 
-     * @property array $vacations
+     * @var array $vacations
      */
     protected $vacations;
 
     /**
      * a place to hold the days of vacation for each employee
      * 
-     * @property int $vacationDays
+     * @var int $vacationDays
      */
     protected $vacationDays;
 
     /**
      * an array that contains the current employee being iterated on
      * 
-     * @property array $cursor  
+     * @var array $cursor  
      */
     protected $cursor;
 
