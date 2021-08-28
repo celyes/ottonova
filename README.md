@@ -19,12 +19,12 @@ The package comes with an executable file written in PHP that can be used as fol
 
 Usage with options:
 ```sh
-./vdc --year=2021 --input=data.json --printer==json --file=vacations
+./vdc --year=2021 --input=data.json --printer=json --file=vacations
 ```
 
 ##### Options
 ```sh
---year      Specifies the year in which you calculate the vacation days
+--year      Specifies the year in which you calculate the vacation days. defaults to the current year if not provided. 
 --input     Specifies a json file that contains the data. you can specify a path to the file . file must be JSON only 
 --printer    Specifies how to output the processed data. you can choose between console or json. If needed, you can export data in other formats by writing a class (read what follows)
 --file      If you specify the output as JSON, you need to specify the filename in which the data will be written to. you don't need to specify the extension

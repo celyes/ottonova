@@ -16,7 +16,7 @@ $options = getopt('', ["year::", "input::", "printer::", "file::"]);
 
 $input = $options['input'] ?? 'data.json';
 
-$year = $options['year'] ?? '2020';
+$year = $options['year'] ?? date('Y');
 
 $printer = $options['printer'] ?? 'console';
 
